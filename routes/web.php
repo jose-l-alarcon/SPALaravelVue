@@ -20,4 +20,9 @@ Route::get('/', function () {
 //usuario autentificado y con email verificado
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth', 'verified']], function() {
+Route::get('/propiedades/index', 'PropiedadController@index')->name('propiedades.index');
+Route::get('/propiedades/create', 'PropiedadController@create')->name('propiedades.create');
+});

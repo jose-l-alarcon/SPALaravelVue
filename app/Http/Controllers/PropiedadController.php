@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Establecimiento;
+use App\Models\Propiedad;
 use Illuminate\Http\Request;
 
-class EstablecimientoController extends Controller
+use App\Models\Categoria;
+
+class PropiedadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,7 @@ class EstablecimientoController extends Controller
      */
     public function index()
     {
-        //
+    return view('propiedades.index');
     }
 
     /**
@@ -24,7 +26,8 @@ class EstablecimientoController extends Controller
      */
     public function create()
     {
-        //
+        $categorias = Categoria::all();
+        return view('propiedades.create', compact('categorias'));
     }
 
     /**
@@ -41,10 +44,10 @@ class EstablecimientoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Establecimiento  $establecimiento
+     * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function show(Establecimiento $establecimiento)
+    public function show(Propiedad $propiedad)
     {
         //
     }
@@ -52,10 +55,10 @@ class EstablecimientoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Establecimiento  $establecimiento
+     * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Establecimiento $establecimiento)
+    public function edit(Propiedad $propiedad)
     {
         //
     }
@@ -64,10 +67,10 @@ class EstablecimientoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Establecimiento  $establecimiento
+     * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Establecimiento $establecimiento)
+    public function update(Request $request, Propiedad $propiedad)
     {
         //
     }
@@ -75,10 +78,10 @@ class EstablecimientoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Establecimiento  $establecimiento
+     * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Establecimiento $establecimiento)
+    public function destroy(Propiedad $propiedad)
     {
         //
     }
