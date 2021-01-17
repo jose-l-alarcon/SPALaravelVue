@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+  crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css">
+
+  
+@endsection
 
 @section('content')
     <div class="container">
@@ -82,7 +90,7 @@
                     <legend class="text-primary">Ubicación:</legend>
 
                     <div class="form-group">
-                        <label for="formbuscador">Coloca la dirección del Establecimiento</label>
+                        <label for="formbuscador">Coloca la dirección de la Propiedad</label>
                         <input
                             id="formbuscador"
                             type="text"
@@ -92,13 +100,13 @@
                         <p class="text-secondary mt-5 mb-3 text-center">El asistente colocará una dirección estimada o mueve el Pin hacia el lugar correcto</p>
                     </div>
 
-                    {{-- <div class="form-group">
+                     <div class="form-group">
                         <div id="mapa" style="height: 400px;"></div>
                     </div>
 
-                    <p class="informacion">Confirma que los siguientes campos son correctos</p> --}}
+                    <p class="informacion">Confirma que los siguientes campos son correctos</p> 
 
-                    {{-- <div class="form-group">
+                 <div class="form-group">
                         <label for="direccion">Dirección</label>
 
                         <input
@@ -114,20 +122,20 @@
                                 {{$message}}
                             </div>
                         @enderror
-                    </div> --}}
+                    </div> 
 
-                    {{-- <div class="form-group">
-                        <label for="colonia">Zona</label>
+                     <div class="form-group">
+                        <label for="zona">Zona</label>
 
                         <input
                             type="text"
-                            id="colonia"
-                            class="form-control @error('colonia') is-invalid @enderror"
-                            placeholder="Colonia"
-                            value="{{old('colonia')}}"
-                            name="colonia"
+                            id="zona"
+                            class="form-control @error('zona') is-invalid @enderror"
+                            placeholder="zona"
+                            value="{{old('zona')}}"
+                            name="zona"
                         >
-                        @error('colonia')
+                        @error('zona')
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -135,7 +143,7 @@
                     </div>
 
                     <input type="hidden" id="lat" name="lat" value="{{old('lat')}}">
-                    <input type="hidden" id="lng" name="lng" value="{{old('lng')}}"> --}}
+                    <input type="hidden" id="lng" name="lng" value="{{old('lng')}}"> 
 
                 </fieldset>
 
@@ -226,15 +234,15 @@
 
 @endsection
 
-
-
-{{-- @section('scripts')
+@section('scripts')
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
   integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-  crossorigin=""></script>
-
-  <script src="https://unpkg.com/esri-leaflet" defer></script>
+  crossorigin="">
+</script>
+<script src="https://unpkg.com/esri-leaflet" defer></script>
   <script src="https://unpkg.com/esri-leaflet-geocoder" defer></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js" integrity="sha256-OG/103wXh6XINV06JTPspzNgKNa/jnP1LjPP5Y3XQDY=" crossorigin="anonymous" defer></script>
-@endsection --}}
+
+
+
+@endsection
