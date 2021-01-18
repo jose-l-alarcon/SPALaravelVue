@@ -32,40 +32,43 @@ document.addEventListener('DOMContentLoaded', () => {
          // Geocode Service
          const geocodeService = L.esri.Geocoding.geocodeService();
 
-          // Buscador de direcciones
+      // Buscador de direcciones
        const buscador = document.querySelector('#formbuscador');
        buscador.addEventListener('blur', buscarDireccion);
        // blur para cuando el usuario hago enter recien consulte a la api de mapas 
 
-        //detectar movimiento del marker
-        marker.on('moveend', function(e) {
-            marker = e.target;
+       //funcion para reubicar pin segun la busqueda del usuario
+       reubicarPin(marker);
 
-            const posicion = marker.getLatLng();
+       function reubicarPin(marker) {
+           // Detectar movimiento del marker
+           marker.on('moveend', function(e) {
+               marker = e.target;
 
-            console.log(posicion);
+               const posicion = marker.getLatLng();
 
-            // Centrar automaticamente
-            mapa.panTo( new L.LatLng( posicion.lat, posicion.lng ));
+               // console.log(posicion);
 
-            // // Reverse Geocoding, cuando el usuario reubica el pin
-            geocodeService.reverse().latlng(posicion, 16).run(function(error, resultado) {
-                console.log(error);
+               // Centrar automaticamente
+               mapa.panTo( new L.LatLng( posicion.lat, posicion.lng ) );
 
-                console.log(resultado.address);
+               // Reverse Geocoding, cuando el usuario reubica el pin
+               geocodeService.reverse().latlng(posicion, 16).run(function(error, resultado) {
+                   // console.log(error);
 
-                // informacion arrina del pin 
-                marker.bindPopup(resultado.address.LongLabel);
-                marker.openPopup();
+                   // console.log(resultado.address);
 
-                // Llenar los campos de direccion 
-                llenarInputs(resultado);
+                   marker.bindPopup(resultado.address.LongLabel);
+                   marker.openPopup();
 
-            })
-
+                   // Llenar los campos
+                   llenarInputs(resultado);
 
 
-            });
+               })
+           });
+       }
+
 
             // cierre detectar movimiento del pin
 
@@ -103,6 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                                     // asignar el contenedor de markers el nuevo pin
                                      markers.addLayer(marker);
+
+                                     reubicarPin(marker);
 
                     
                                 })

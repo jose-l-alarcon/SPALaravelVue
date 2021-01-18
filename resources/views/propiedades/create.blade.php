@@ -6,7 +6,8 @@
   crossorigin=""/>
   <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css">
 
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.css" 
+  integrity="sha256-NkyhTCRnLQ7iMv7F3TQWjVq25kLnjhbKEVPqGJBcCUg=" crossorigin="anonymous" />
 @endsection
 
 @section('content')
@@ -14,9 +15,14 @@
         <h1 class="text-center mt-4">Registrar Propiedad</h1>
 
         <div class="mt-5 row justify-content-center">
+            @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
             <form
                 class="col-md-9 col-xs-12 card card-body"
-               
+                action="{{route('propiedades.store')}}"
                 method="POST"
                 enctype="multipart/form-data"
             >
@@ -30,7 +36,7 @@
                             id="nombre"
                             type="text"
                             class="form-control @error('nombre') is-invalid @enderror "
-                            placeholder="Nombre Establecimiento"
+                            placeholder="Nombre propiedad"
                             name="nombre"
                             value="{{ old('nombre') }}"
                         >
@@ -56,7 +62,7 @@
                                 <option
                                     value="{{$categoria->id}}"
                                     {{ old('categoria_id') == $categoria->id  ? 'selected' : '' }}
-                                >{{$categoria->nombre}}</option>
+                                    >{{$categoria->nombre}}</option>
 
                             @endforeach
                         </select>
@@ -117,7 +123,7 @@
                             value="{{old('direccion')}}"
                             name="direccion"
                         >
-                        @error('direccion')
+                        @error('direccion') 
                             <div class="invalid-feedback">
                                 {{$message}}
                             </div>
@@ -147,15 +153,15 @@
 
                 </fieldset>
 
-                {{-- <fieldset class="border p-4 mt-5">
-                    <legend  class="text-primary">Información Establecimiento: </legend>
+                <fieldset class="border p-4 mt-5">
+                    <legend  class="text-primary">Información de la Propiedad: </legend>
                         <div class="form-group">
                             <label for="nombre">Teléfono</label>
                             <input
                                 type="tel"
                                 class="form-control @error('telefono')  is-invalid  @enderror"
                                 id="telefono"
-                                placeholder="Teléfono Establecimiento"
+                                placeholder="Teléfono"
                                 name="telefono"
                                 value="{{ old('telefono') }}"
                             >
@@ -183,49 +189,19 @@
                                 @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="nombre">Hora Apertura:</label>
-                            <input
-                                type="time"
-                                class="form-control @error('apertura')  is-invalid  @enderror"
-                                id="apertura"
-                                name="apertura"
-                                value="{{ old('apertura') }}"
-                            >
-                            @error('apertura')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="nombre">Hora Cierre:</label>
-                            <input
-                                type="time"
-                                class="form-control @error('cierre')  is-invalid  @enderror"
-                                id="cierre"
-                                name="cierre"
-                                value="{{ old('cierre') }}"
-                            >
-                            @error('cierre')
-                                <div class="invalid-feedback">
-                                    {{$message}}
-                                </div>
-                            @enderror
-                        </div>
                 </fieldset>
 
                 <fieldset class="border p-4 mt-5">
-                    <legend  class="text-primary">Imágenes Establecimiento: </legend>
+                    <legend  class="text-primary">Imágenes propiedad: </legend>
                         <div class="form-group">
                             <label for="imagenes">Imagenes</label>
                             <div id="dropzone" class="dropzone form-control"></div>
-                        </div>
-                </fieldset> --}} 
+                        </div> 
+                </fieldset> 
 
-                {{-- <input type="hidden" id="uuid" name="uuid" value="{{ Str::uuid()->toString()}}"> --}}
-                {{-- <input type="submit" class="btn btn-primary mt-3 d-block" value="Registrar Establecimiento"> --}}
+
+                <input type="hidden" id="uuid" name="uuid" value="{{ Str::uuid()->toString()}}"> 
+                <input type="submit" class="btn btn-primary mt-3 d-block" value="Registrar propiedad">
 
 
             </form> 
@@ -242,7 +218,7 @@
 <script src="https://unpkg.com/esri-leaflet" defer></script>
   <script src="https://unpkg.com/esri-leaflet-geocoder" defer></script>
 
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.0/dropzone.min.js"
+   integrity="sha256-OG/103wXh6XINV06JTPspzNgKNa/jnP1LjPP5Y3XQDY=" crossorigin="anonymous" defer></script>
 
 @endsection

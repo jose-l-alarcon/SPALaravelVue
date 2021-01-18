@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'InicioController')->name('inicio');
 
 //usuario autentificado y con email verificado
 Auth::routes(['verify' => true]);
@@ -25,4 +23,7 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => ['auth', 'verified']], function() {
 Route::get('/propiedades/index', 'PropiedadController@index')->name('propiedades.index');
 Route::get('/propiedades/create', 'PropiedadController@create')->name('propiedades.create');
+Route::post('/propiedades', 'PropiedadController@store')->name('propiedades.store');
+Route::post('/imagenes/store', 'ImagenController@store')->name('imagenes.store');
+Route::post('/imagenes/destroy', 'ImagenController@destroy')->name('imagenes.destroy');
 });

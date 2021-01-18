@@ -21,13 +21,13 @@ class CreatePropiedadsTable extends Migration
         });
 
 
-        Schema::create('propiedades', function (Blueprint $table) {
+        Schema::create('propiedads', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->foreignId('categoria_id')->constrained();
             $table->string('imagen_principal');
             $table->string('direccion');
-            $table->string('zona');
+            $table->string('zona')->nullable();
             $table->string('lat');
             $table->string('lng');
             $table->string('telefono');
@@ -47,6 +47,7 @@ class CreatePropiedadsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propiedads');
+        Schema::dropIfExists('propiedades');
+        Schema::dropIfExists('categorias');
     }
 }
