@@ -34,8 +34,14 @@
            axios.get('/api/categorias/departamento')
            .then(respuesta => {
              this.$store.commit("AGREGAR_DPTOS", respuesta.data);
+            // this.departamentos = respuesta.data;
 
            })
-        }
+          },
+            computed: {
+                departamentos(){
+                    return this.$store.state.departamentos;
+                }
+            }
     }
 </script>
