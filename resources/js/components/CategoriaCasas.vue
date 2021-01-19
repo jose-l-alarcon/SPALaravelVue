@@ -13,9 +13,8 @@
                         <p class="card-text">
                             
                         </p>
-
-                        
-                        <a class="btn btn-primary d-block">Ver propiedad</a>
+                        <router-link :to="{ name: 'propiedades', params: { id: casa.id}}">   
+                                <a class="btn btn-primary d-block">Ver Lugar</a></router-link>   
                     </div>
                 </div>
             </div>
@@ -28,19 +27,18 @@
 <script>
     export default {
 
-      data: function() {
-         return{
-         
-         }
-
-      },
 
         mounted() {
            axios.get('/api/categorias/casa')
            .then(respuesta => {
-            this.casas = respuesta.data;
+              this.$store.commit("AGREGAR_CASAS", respuesta.data);
 
            })
-        }
+        },
+            computed: {
+                casas(){
+                    return this.$store.state.casas;
+                }
+            }
     }
 </script>

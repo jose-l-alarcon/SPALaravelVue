@@ -1,9 +1,6 @@
 <template>
-    <div>
-     
-      <categoria-dpto></categoria-dpto>
-  
-      
+    <div> 
+      <router-view></router-view>   
     </div>
 </template>
 
@@ -12,18 +9,8 @@
 
 
 import store from '../store'
-import CategoriaDpto from './CategoriaDpto';
-// import CategoriaCasas from './CategoriaCasas';
 
     export default {
-        store,
-    // registrar componente hijo
-       components:{
-
-              CategoriaDpto
-           
-              
-
-       }
+        store
     }
 </script>

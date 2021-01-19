@@ -4,15 +4,17 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import router from './router';
+
 
 
 Vue.component('pagina-inicio', require('./components/PaginaInicioComponent.vue').default);
-// Vue.component('categoria-dpto', require('./components/CategoriaDptoComponent.vue').default);
-// Vue.component('categoria-casas', require('./components/CategoriaCasasComponent.vue').default);
+
 
 
 const app = new Vue({
     el: '#app',
+    router
 });
 
 require('./mapa');

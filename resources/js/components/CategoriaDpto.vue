@@ -9,13 +9,11 @@
                     <img class="card-img-top" :src="`storage/${departamento.imagen_principal}`" alt="card del restaurant" >
                     <div class="card-body">
                         <h3 class="card-title text-primary font-weight-bold"> {{ departamento.nombre }} </h3>
-                        <p class="card-text"> {{departamento.direccion}}</p>
-                        <p class="card-text">
-                            
-                        </p>
+                        <p class="card-text"> {{departamento.direccion}}</p>             
 
+                            <router-link :to="{ name: 'propiedades', params: { id: departamento.id}}">   
+                                <a class="btn btn-primary d-block">Ver Lugar</a></router-link>                 
                         
-                        <a class="btn btn-primary d-block">Ver propiedad</a>
                     </div>
                 </div>
             </div>

@@ -26,6 +26,7 @@
         "vuex": "^3.6.0"
     },
     "dependencies": {
-        "leaflet-geosearch": "^3.2.1"
+        "leaflet-geosearch": "^3.2.1",
+        "vue-router": "^3.4.9"
     }
 }
